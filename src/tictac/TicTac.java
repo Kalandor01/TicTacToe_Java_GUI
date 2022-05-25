@@ -245,24 +245,16 @@ public class TicTac extends JFrame implements ActionListener{
     }
 
     private void jelKeresJobbraLe() {
-        atvizsgalas(4);
     }
     
     private void jelKeresBalraLe() {
-        atvizsgalas(3);
     }
     
     private void jelKeresSoronBelul() {
-        atvizsgalas(2);
     }
 
     private void jelKeresOszloponBelul() {
-        atvizsgalas(1);
-    }
-    private void atvizsgalas(int feladatSzam){
-        //sorok és oszlopok beállítása
-        //a jeltől egyik, majd másik irányba lépegetünk a feladatoknak megfelelően
-        //amíg 5 egyforma jelet nem kapunk, vagy egyéb miatt nem lépünk ki (szélére érünk pl.)
+        //MIÉNK
     }
     
     public static void main(String[] args) {

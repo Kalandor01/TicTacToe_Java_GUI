@@ -50,23 +50,25 @@ public class TicTac extends JFrame implements ActionListener{
                     jatekos = felirat[(lepesDb+1)%2];
                     lbUzenet.setText((lepesDb+1) + ". lépés: " + jatekos);
                     btAkt.setText(felirat[lepesDb%2]);
-                }
-                if(lepesDb >= (hossz * 2) - 1 || lepesDb > 8)
-                {
-                    if (hossz < 6)
+
+                    ellenoriz_meta();
+                    if (!nyerte)
                     {
-                        ellenoriz();
                         gep_lep();
-                        ellenoriz();
-                    }
-                    else
-                    {
-                        ellenoriz_5();
-                        gep_lep();
-                        ellenoriz();
+                        ellenoriz_meta();
                     }
                 }
             }
+    }
+
+    public void ellenoriz_meta() {
+        if(lepesDb >= (hossz * 2) - 1 || lepesDb > 8)
+        {
+            if (hossz < 6)
+                ellenoriz();
+            else
+                ellenoriz_5();
+        }
     }
         
     private void meretetAllit(int hossz) {
@@ -160,8 +162,21 @@ public class TicTac extends JFrame implements ActionListener{
         dontetlenE();
     }
 
-    public static void gep_lep() {
-        
+    public void gep_lep() {
+        String jatekos;
+        jatekos = felirat[(lepesDb+1)%2];
+
+        int sz;
+        int h;
+        do {
+            sz = (int)(Math.random() * hossz);
+            h = (int)(Math.random() * hossz);
+        } while (!btGomb[sz][h].getText().equals(""));
+        btGomb[sz][h].setText(jatekos);
+
+        lepesDb++;
+        jatekos = felirat[(lepesDb+1)%2];
+        lbUzenet.setText((lepesDb+1) + ". lépés: " + jatekos);
     }
     
     private void nyerteskiir(String nyert) {

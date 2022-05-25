@@ -43,11 +43,6 @@ public class TicTac extends JFrame implements ActionListener{
         
         else  if (!nyerte)
             {
-                //Az ellenfél kezdő lépése
-                
-                /*-------------------------*/
-                                
-                //Az ellenfél lépései és ellenőrzése
                 //üres gombra kattintunk
                 if (btAkt.getText().equals(""))
                 {
@@ -61,10 +56,14 @@ public class TicTac extends JFrame implements ActionListener{
                     if (hossz < 6)
                     {
                         ellenoriz();
+                        gep_lep();
+                        ellenoriz();
                     }
                     else
                     {
                         ellenoriz_5();
+                        gep_lep();
+                        ellenoriz();
                     }
                 }
             }
@@ -159,6 +158,10 @@ public class TicTac extends JFrame implements ActionListener{
         jelKeresOszloponBelul();
         //döntetlen
         dontetlenE();
+    }
+
+    public static void gep_lep() {
+        
     }
     
     private void nyerteskiir(String nyert) {

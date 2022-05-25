@@ -56,7 +56,7 @@ public class TicTac extends JFrame implements ActionListener{
                     lbUzenet.setText((lepesDb+1) + ". lépés: " + jatekos);
                     btAkt.setText(felirat[lepesDb%2]);
                 }
-                if(lepesDb >= hossz * 2 || lepesDb >= 10)
+                if(lepesDb >= (hossz * 2) - 1 || lepesDb > 8)
                 {
                     if (hossz < 6)
                     {

@@ -13,8 +13,7 @@ public class TicTac extends JFrame implements ActionListener{
         private final JButton btStart = new JButton("Új játék");
         private final JLabel lbUzenet=new JLabel("1. lépés: X");
         private final JLabel lbMeret=new JLabel("Méret: ");
-        private final String felirat="X"; 
-        private final String felirat2="O"; 
+        private final String[] felirat={"0", "X"}; 
         private boolean dontetlen = false;
         private final JComboBox cbMeret = new JComboBox(new String[] {"3*3", "4*4", "5*5", "6*6", "7*7", "8*8", "9*9", "10*10", "11*11"});
         private final JPanel pnJatekTer=new JPanel(new GridLayout(hossz, hossz));
@@ -32,7 +31,7 @@ public class TicTac extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton btAkt = (JButton)e.getSource();
-
+        String jatekos;
         boolean segedRobot = true;
         
         
@@ -49,12 +48,27 @@ public class TicTac extends JFrame implements ActionListener{
                 /*-------------------------*/
                                 
                 //Az ellenfél lépései és ellenőrzése
-                
+                //üres gombra kattintunk
+                if (btAkt.getText().equals(""))
+                {
+                    lepesDb++;
+                    jatekos = felirat[(lepesDb+1)%2];
+                    lbUzenet.setText((lepesDb+1) + ". lépés: " + jatekos);
+                    btAkt.setText(felirat[lepesDb%2]);
+                }
+                if (hossz < 6)
+                {
+                    ellenoriz();
+                }
+                else
+                {
+                    ellenoriz_5();
+                }
             }
     }
         
     private void meretetAllit(int hossz) {
-        
+
         pnJatekTer.removeAll(); //gombok kiürítése
         pnJatekTer.setLayout(new GridLayout(hossz, hossz));
         betu=new Font("Comic Sans MS", Font.BOLD, 280/hossz);
@@ -69,7 +83,7 @@ public class TicTac extends JFrame implements ActionListener{
         setSize(700, 750);
 //        setResizable(false);
         setLocationRelativeTo(this);
-        JPanel pnAlap=new JPanel();
+        JPanel pnAlap = new JPanel();
         pnAlap.add(btStart);
         pnAlap.add(lbMeret);
         pnAlap.add(cbMeret);
@@ -82,7 +96,7 @@ public class TicTac extends JFrame implements ActionListener{
         ujrakezd();
     }
     
-    private void gombokLetrehozasa(){
+    private void gombokLetrehozasa() {
         for (int i = 0; i < hossz; i++)
             {
                 for (int j = 0; j < hossz; j++)

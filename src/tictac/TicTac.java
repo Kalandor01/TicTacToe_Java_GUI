@@ -18,7 +18,7 @@ public class TicTac extends JFrame implements ActionListener{
         private final JComboBox cbMeret = new JComboBox(new String[] {"3*3", "4*4", "5*5", "6*6", "7*7", "8*8", "9*9", "10*10", "11*11"});
         private final JPanel pnJatekTer=new JPanel(new GridLayout(hossz, hossz));
         private Font betu=new Font("Comic Sans MS", Font.BOLD, 280/hossz);
-        private String[] indexek;
+        private int[] btAkt_pos = new int[2];
         private boolean robotLefut = true;
 
     public TicTac() {
@@ -43,6 +43,18 @@ public class TicTac extends JFrame implements ActionListener{
                 //üres gombra kattintunk
                 if (btAkt.getText().equals(""))
                 {
+                    //get akt bt pos
+                    for (int x = 0; x < hossz; x++)
+                    {
+                        int y;
+                        for (y = 0; y < hossz && btGomb[x][y] != btAkt; y++) {}
+                        if(y<hossz)
+                        {
+                            btAkt_pos = new int[] {x, y};
+                            break;
+                        }
+                    }
+                    //other
                     lepesDb++;
                     jatekos = felirat[(lepesDb+1)%2];
                     lbUzenet.setText((lepesDb+1) + ". lépés: " + jatekos);
@@ -167,6 +179,9 @@ public class TicTac extends JFrame implements ActionListener{
             sz = (int)(Math.random() * hossz);
             h = (int)(Math.random() * hossz);
         } while (!btGomb[sz][h].getText().equals(""));
+        //get bt akt pos
+        btAkt_pos = new int[] {sz, h};
+
         btGomb[sz][h].setText(jatekos);
 
         lepesDb++;
@@ -269,9 +284,12 @@ public class TicTac extends JFrame implements ActionListener{
 
     private void jelKeresOszloponBelul() {
         //MIÉNK
+        System.out.println(btAkt_pos[0] + ", " + btAkt_pos[1]);
+        
     }
     
     public static void main(String[] args) {
+
         TicTac ticTac = new TicTac();
     }
 }

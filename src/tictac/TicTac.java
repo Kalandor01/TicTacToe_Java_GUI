@@ -273,19 +273,103 @@ public class TicTac extends JFrame implements ActionListener{
             }
     }
 
-    private void jelKeresJobbraLe() {
+    private void jelKeresJobbraLe()
+    {
+        String akt_jel = btGomb[btAkt_pos[0]][btAkt_pos[1]].getText();
+        int sor = btAkt_pos[0];
+        int oszlop = btAkt_pos[1];
+        int jelek = 0;
+        while (oszlop > -1 && sor < hossz && btGomb[sor][oszlop].getText().equals(akt_jel))
+        {
+            oszlop--;
+            sor++;
+            jelek++;
+        }
+        sor = btAkt_pos[0] - 1;
+        oszlop = btAkt_pos[1] + 1;
+        while (oszlop < hossz && sor > -1 && btGomb[sor][oszlop].getText().equals(akt_jel))
+        {
+            oszlop++;
+            sor--;
+            jelek++;
+        }
+        System.out.printf("Átló fel: \"%s\" klikkelt:\n%s. sor\n%s. oszlop\n", akt_jel, (btAkt_pos[0] + 1), (btAkt_pos[1] + 1));
+        System.out.println(jelek + " jel volt.\n");
+        if(jelek >= 5)
+            nyerteskiir(akt_jel);
     }
     
-    private void jelKeresBalraLe() {
+    private void jelKeresBalraLe()
+    {
+        String akt_jel = btGomb[btAkt_pos[0]][btAkt_pos[1]].getText();
+        int sor = btAkt_pos[0];
+        int oszlop = btAkt_pos[1];
+        int jelek = 0;
+        while (oszlop > -1 && sor > -1 && btGomb[sor][oszlop].getText().equals(akt_jel))
+        {
+            oszlop--;
+            sor--;
+            jelek++;
+        }
+        sor = btAkt_pos[0] + 1;
+        oszlop = btAkt_pos[1] + 1;
+        while (oszlop < hossz && sor < hossz && btGomb[sor][oszlop].getText().equals(akt_jel))
+        {
+            oszlop++;
+            sor++;
+            jelek++;
+        }
+        System.out.printf("Átló le: \"%s\" klikkelt:\n%s. sor\n%s. oszlop\n", akt_jel, (btAkt_pos[0] + 1), (btAkt_pos[1] + 1));
+        System.out.println(jelek + " jel volt.\n");
+        if(jelek >= 5)
+            nyerteskiir(akt_jel);
     }
     
-    private void jelKeresSoronBelul() {
+    private void jelKeresSoronBelul()
+    {
+        String akt_jel = btGomb[btAkt_pos[0]][btAkt_pos[1]].getText();
+        int sor = btAkt_pos[0];
+        int oszlop = btAkt_pos[1];
+        int jelek = 0;
+        while (oszlop > -1 && btGomb[sor][oszlop].getText().equals(akt_jel))
+        {
+            oszlop--;
+            jelek++;
+        }
+        oszlop = btAkt_pos[1] + 1;
+        while (oszlop < hossz && btGomb[sor][oszlop].getText().equals(akt_jel))
+        {
+            oszlop++;
+            jelek++;
+        }
+        System.out.printf("Sor: \"%s\" klikkelt:\n%s. sor\n%s. oszlop\n", akt_jel, (btAkt_pos[0] + 1), (btAkt_pos[1] + 1));
+        System.out.println(jelek + " jel volt.\n");
+        if(jelek >= 5)
+            nyerteskiir(akt_jel);
     }
 
-    private void jelKeresOszloponBelul() {
+    private void jelKeresOszloponBelul()
+    {
         //MIÉNK
-        System.out.println(btAkt_pos[0] + ", " + btAkt_pos[1]);
-        
+        String akt_jel = btGomb[btAkt_pos[0]][btAkt_pos[1]].getText();
+        int sor = btAkt_pos[0];
+        int oszlop = btAkt_pos[1];
+        int jelek = 0;
+        while (sor > -1 && btGomb[sor][oszlop].getText().equals(akt_jel))
+        {
+            sor--;
+            jelek++;
+        }
+        sor = btAkt_pos[0] + 1;
+        while (sor < hossz && btGomb[sor][oszlop].getText().equals(akt_jel))
+        {
+            sor++;
+            jelek++;
+        }
+        System.out.printf("Oszlop: \"%s\" klikkelt:\n%s. sor\n%s. oszlop\n", akt_jel, (btAkt_pos[0] + 1), (btAkt_pos[1] + 1));
+        System.out.println(jelek + " jel volt.\n\n\n");
+        if(jelek >= 5)
+            nyerteskiir(akt_jel);
     }
     
     public static void main(String[] args) {

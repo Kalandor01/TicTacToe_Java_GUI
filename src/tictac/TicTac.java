@@ -19,10 +19,7 @@ public class TicTac extends JFrame implements ActionListener{
         private final JPanel pnJatekTer=new JPanel(new GridLayout(hossz, hossz));
         private Font betu=new Font("Comic Sans MS", Font.BOLD, 280/hossz);
         private String[] indexek;
-        private boolean robotLefut = false;
-        private int robotSor;
-        private int robotOszlop;
-        private int i;
+        private boolean robotLefut = true;
 
     public TicTac() {
         inicializal(hossz);
@@ -52,7 +49,7 @@ public class TicTac extends JFrame implements ActionListener{
                     btAkt.setText(felirat[lepesDb%2]);
 
                     ellenoriz_meta();
-                    if (!nyerte)
+                    if (!nyerte && robotLefut)
                     {
                         gep_lep();
                         ellenoriz_meta();
@@ -115,8 +112,6 @@ public class TicTac extends JFrame implements ActionListener{
     }
     
     private void ujrakezd() {
-        i = 0;
-        robotLefut = false;
         nyerte = false;
         lepesDb = 0;
             for (int i = 0; i < hossz; i++)
@@ -259,6 +254,7 @@ public class TicTac extends JFrame implements ActionListener{
             {
                 JOptionPane.showMessageDialog(this, "Döntetlen!");
                 dontetlen = true;
+                nyerte = true;
             }
     }
 

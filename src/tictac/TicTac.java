@@ -15,11 +15,11 @@ public class TicTac extends JFrame implements ActionListener{
         private final JLabel lbMeret=new JLabel("Méret: ");
         private final String[] felirat={"0", "X"}; 
         private boolean dontetlen = false;
-        private final JComboBox cbMeret = new JComboBox(new String[] {"3*3", "4*4", "5*5", "6*6", "7*7", "8*8", "9*9", "10*10", "11*11"});
+        private final JComboBox cbMeret = new JComboBox(new String[] {"3*3", "4*4", "5*5", "6*6", "7*7", "8*8", "9*9", "10*10", "11*11", "50*50"});
         private final JPanel pnJatekTer=new JPanel(new GridLayout(hossz, hossz));
         private Font betu=new Font("Comic Sans MS", Font.BOLD, 280/hossz);
         private int[] btAkt_pos = new int[2];
-        private boolean robotLefut = true;
+        private boolean robotLefut = false;
 
     public TicTac() {
         inicializal(hossz);
@@ -29,11 +29,10 @@ public class TicTac extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         JButton btAkt = (JButton)e.getSource();
         String jatekos;
-        boolean segedRobot = true;
         
         
         if(btAkt == btStart) {
-            hossz = cbMeret.getSelectedIndex()+3;
+            hossz = Integer.parseInt(cbMeret.getSelectedItem().toString().split("\\*")[0]);
             seged = hossz - 1;
             meretetAllit(hossz);
         }

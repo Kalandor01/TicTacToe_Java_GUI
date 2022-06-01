@@ -19,7 +19,7 @@ public class TicTac extends JFrame implements ActionListener{
         private final JPanel pnJatekTer=new JPanel(new GridLayout(hossz, hossz));
         private Font betu=new Font("Comic Sans MS", Font.BOLD, 280/hossz);
         private int[] btAkt_pos = new int[2];
-        private boolean robotLefut = false;
+        private boolean robotLefut = true;
 
     public TicTac() {
         inicializal(hossz);
